@@ -1,0 +1,15 @@
+.login{
+    position: fixed;
+    overflow: auto;
+    width: 42vw;
+    height: 32vw;
+    left: 34%;
+    top:6.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link {
+    text-decoration: none;
+    color:#14C17B;
+}
