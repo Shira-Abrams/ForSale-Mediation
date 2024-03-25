@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sL7gI2EyJGyxGTD/We77TeBeFoh4nieTQ9QXj8sPX51nrqjIH+bdrhb36os5emeSXTx3pSlOtWcnxHq1V1hh8A==",
+  "dgSpecHash": "QU4/CmhZdw98JT2v+sInA0nok1shUGwcywL4lYaa2Pz91iABJ/8MvOv2OcvAUoJ7GmNy3fbWrkvCsCL35A55yQ==",
   "success": true,
-  "projectFilePath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Server\\Server.csproj",
+  "projectFilePath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Server\\Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shira abrams\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\shira abrams\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

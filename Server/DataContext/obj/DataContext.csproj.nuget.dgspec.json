@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\DataContext\\DataContext.csproj": {}
+    "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\DataContext\\DataContext.csproj": {}
   },
   "projects": {
-    "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\DataContext\\DataContext.csproj": {
+    "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\DataContext\\DataContext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\DataContext\\DataContext.csproj",
+        "projectUniqueName": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\DataContext\\DataContext.csproj",
         "projectName": "DataContext",
-        "projectPath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\DataContext\\DataContext.csproj",
+        "projectPath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\DataContext\\DataContext.csproj",
         "packagesPath": "C:\\Users\\shira abrams\\.nuget\\packages\\",
-        "outputPath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\DataContext\\obj\\",
+        "outputPath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\DataContext\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shira abrams\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\Reposetory.csproj": {
-                "projectPath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\Reposetory.csproj"
+              "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\Reposetory.csproj": {
+                "projectPath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\Reposetory.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\Reposetory.csproj": {
+    "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\Reposetory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\Reposetory.csproj",
+        "projectUniqueName": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\Reposetory.csproj",
         "projectName": "Reposetory",
-        "projectPath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\Reposetory.csproj",
+        "projectPath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\Reposetory.csproj",
         "packagesPath": "C:\\Users\\shira abrams\\.nuget\\packages\\",
-        "outputPath": "D:\\תכנות שנה ב\\ForSaleRealEstate\\Server\\Reposetory\\obj\\",
+        "outputPath": "D:\\תכנות שנה ב\\ForSale-Mediation\\Server\\Reposetory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shira abrams\\AppData\\Roaming\\NuGet\\NuGet.Config",
