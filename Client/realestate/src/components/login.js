@@ -9,49 +9,55 @@ import { useState } from "react";
 import '../cssomponents/login.css'
 
 
- const LoginForm=()=>{
+ const LoginForm=(props)=>{
         const [isSignIn,setisSignIn]=useState(true);
         const [isSignUp,setisSignUP]=useState(false);
+        const[sinUpColor,setSinUpColor]=useState('#14C17B')
+        const[sinInColor,setSinColor]=useState('lightgray')
      const ChangeSignIn=(event)=>{
-
         setisSignIn(true)
         setisSignUP(false)
+        setSinUpColor('#14C17B');
+        setSinColor('lightgray')
+    }   
         
-        
-        
-    }
-   
-   const ChangeSignUp=(evn)=>{
+    const ChangeSignUp=(evn)=>{
         setisSignIn(false)
         setisSignUP(true)
+        setSinUpColor('lightgray');
+        setSinColor('#14C17B')
     }
-    
-
- const  SendNavBar=(IsCloseLogIn)=>{
-        this.props.CloseLogIn(IsCloseLogIn)
-  }
+        
+        
+    const SendCloseLogIn=(bool)=>{
+      props.CloseLogIn(bool);
+    }
+   
+   
     return(
             <>  
-               <div className="login">
+               
                   
-                <Stack  direction="column" spacing={1} >
-                <div> 
+                <Stack  direction="column" spacing={0} className="login" sx={{paddingTop:0}} >
+                 
 
-                  <Stack  direction="row" spacing={0} className="button">
+                  <Stack  direction="row" spacing={0} className="button" sx={{marginTop:0}}>
                    
-                        <Button variant="contained" href=""  onClick={ChangeSignIn}  className="b" id="signin" sx={{backgroundColor:'lightgray',borderRadius:'0px'}}
+                        {/* <Button variant="contained" href=""  onClick={ChangeSignIn}  className="b" id="signin" sx={{backgroundColor:sinInColor,borderRadius:'0px'}}
                         >sign in</Button>
                         <Button variant="contained" href="" onClick={ChangeSignUp}  
-                        className="b" id="signup"  sx={{backgroundColor:'#14C17B',borderRadius:'0px',height:'3vw'}}
-                          >sign up</Button>
+                        className="b" id="signup"  sx={{backgroundColor:sinUpColor,borderRadius:'0px',height:'3vw'}}
+                          >sign up</Button> */}
+                          <div onClick={ChangeSignIn}  className="b" id="signin"style={{backgroundColor:sinInColor,borderRadius:'0px'}}>sign in</div>
+                          <div onClick={ChangeSignUp}  className="b" id="signin"style={{backgroundColor:sinUpColor,borderRadius:'0px'}}>sign up</div>
+
                   </Stack>
-                      {isSignIn?(<SignIn></SignIn>):(<SignUp CloseLogIn={SendNavBar} ></SignUp>)}
+                      {isSignIn?(<SignIn></SignIn>):(<SignUp closeLogForm={SendCloseLogIn}></SignUp>)}
                     
-                </div>
+              
                     
                 </Stack>
                     
-               </div>
                
 
              </>       

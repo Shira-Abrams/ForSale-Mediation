@@ -9,13 +9,13 @@ const Home=()=>
         <>
            <div  style={{position:'fixed',left:0,right:0}}>
 
+              <img src='./picture/architecture-8098404.jpg' className="background"/>
+           
+           </div>
 
-            
-            <img src='./picture/architecture-8098404.jpg' className="background"/>
            
             
 
-           </div>
           
         </>
     )

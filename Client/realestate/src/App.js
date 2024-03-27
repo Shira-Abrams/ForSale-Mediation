@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 import ResponsiveAppBar from './components/navbar';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './components/shignin';
@@ -10,9 +10,15 @@ import Home from './components/home';
 import AllProperty from './components/AllProperty';
 import MultiActionAreaCard from './components/singleProperty';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { GetAllProperty } from "./redux/PropertySlice";
 function App() {
-  
-   
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(GetAllProperty())
+
+  },[])
+
 
   return (
     <div className="App">

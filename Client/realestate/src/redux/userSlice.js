@@ -19,7 +19,7 @@ export const AddUser=createAsyncThunk(
         try {
             const response=await axios.post("https://localhost:7076/api/User",user)
            
-            console.log(response.data);
+            console.log('at addUser the user was added',response.data);
             if(response.status===200)
             return response.data
         } catch (error) {

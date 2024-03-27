@@ -30,7 +30,7 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [isVisible, setIsVisible] = React.useState(false);
-  const[closeBybutton,setcloseBybutton]=React.useState(false)
+  const[closeBybutton,setcloseBybutton]=React.useState(true)
   const [isprofile, setIsProfile] = React.useState(false);
   const for_sale='for-sale';
   const for_rent='for-rent';
@@ -72,7 +72,9 @@ function NavigateHome()
   // }
 
  const SetIsCloseLogIn=(e)=>{
-    setcloseBybutton(e)
+   setIsVisible(!isVisible);
+  //  const T= ()=>setcloseBybutton(true)
+  //  T()
  }
   return (
     <AppBar position="static"  sx={{backgroundColor:'white'}}>
@@ -122,7 +124,7 @@ function NavigateHome()
             <Avatar alt="shira abrams" src='fdfdf' />
           </IconButton>
         </Tooltip>
-        <div style={{zIndex:1}}>{isVisible&&!closeBybutton ?(<LoginForm CloseLogIn={SetIsCloseLogIn}></LoginForm> ):('')}</div>
+        <div style={{zIndex:1}}>{isVisible?(<LoginForm  CloseLogIn={SetIsCloseLogIn}></LoginForm> ):('')}</div>
       
       
        

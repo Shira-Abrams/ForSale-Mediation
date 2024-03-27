@@ -30,6 +30,10 @@ import OtherFilters from './Otherfilter';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { array } from 'yup';
+import { useDispatch, useSelector } from "react-redux";
+import {AddSearchingProperty,DeleteSearchingProperty,GetAllSearchingProperty} from '../redux/SearchinPropertySlice'
+import { LteMobiledata } from '@mui/icons-material';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const options = [
   'רחובות ',
@@ -154,18 +158,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function SearchAppBar(props)
-{
+{ 
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
  const[isOpenPrice,setIsOpenPrice]=React.useState(false);
  const[isOpenRoom,setIsOpenRoom]=React.useState(false);
  const[isOpenPropType,setIsOpenPropType]=React.useState(false);
  const[isOpenPropchar,setIsOpenPropchar]=React.useState(false);
- const[isOpenOthers,setIsOpenOthers]=React.useState(false);
+ const[isOpenOthers,setIsOpenOthers]=React.useState(false); 
+ const [isSaveSearching,setIsSaveSearching]=React.useState(false);
+ const [isDeleteSearching,setIsDeleteSearching]=React.useState(false)
+ const[save,setSave]=React.useState(true);
+ const[currentSearchingId,setCurrentSearchingId]=React.useState(undefined);
  const [searching,setSearching]=React.useState({
-   Id:0,
-   UserId:0,
-   PropertyStatus:0,
+   UserId:1,
    Parkinglot:false,
    Elivator:false,
    Aircondition:false, 
@@ -174,14 +180,13 @@ export default function SearchAppBar(props)
     DisabledAcces:false,
     Bars:false,
     PandorDoor:false,
-    BPorchGardenars:false,
-    Status:0,
-    Address:0,
+    PorchGarden:false,
+    Address:'',
     PriceBegin:0,
     PriceEnd:10000000,
     PriceForSmBegin:0,
     PriceForSmEnd:70000,
-    Rooms:0,
+    Rooms:0,    
     SmBegin:0,
     SmEnd:200,
     PropertyCondtion:[],
@@ -191,6 +196,10 @@ export default function SearchAppBar(props)
     IsCommercial:false,
     Furniture:0
  })
+ const dispatch=useDispatch()
+// const propCharArray=['Parkinglot','Elivator','Aircondition','Basmsent','SafeRoom','DisabledAcces','Bars','PorchGardenars'];
+ const propCharArray=['Parkinglot','Elivator','PorchGarden','SafeRoom','Aircondition','Basmsent','DisabledAcces','Bars'];
+
   const OpenPrice =()=>{
      props.filters.ChangeClose(true)
      setIsOpenPrice(!isOpenPrice)
@@ -248,7 +257,7 @@ export default function SearchAppBar(props)
  const SendPrice=(value,value2)=>{
    setIsOpenPrice(!isOpenPrice)
    setSearching({...searching,PriceBegin:value[0],PriceEnd:value[1],PriceForSmBegin:value2[0],PriceForSmEnd:value2[1]})
-   console.log('at SendPrice the searchin was defined to');
+   console.log('at SendPrice the searchin was defined to',searching);
    props.filters.price(value,value2)
    
  }
@@ -256,24 +265,88 @@ export default function SearchAppBar(props)
  const SendRoom=(n)=>{
      setIsOpenRoom(!isOpenRoom)
      setSearching({...searching,Rooms:n})
+     console.log('searching',searching);
      props.filters.room(n)
  }
  const SendFilterType=(arrtype)=>{
+   //const propTypeArray=[...arrtype]
+   let tempArray=[];
+   for (let i = 0; i < arrtype.length; i++) {
+     if(arrtype[i]===true)
+     tempArray.push(i);
+   }
+   setSearching({...searching,PropertyTypes:tempArray})
+   console.log(' at SendFilterType searching=',searching);
     setIsOpenPropType(!isOpenPropType)
     props.filters.propertytype(arrtype)
  }
 
  const SendChar=(obj)=>{
   setIsOpenPropchar(!isOpenPropchar)
+   let pchar;
+   for (let i = 0; i < propCharArray.length; i++) {
+     pchar=propCharArray[i]
+         setSearching({...searching,[pchar]:obj[i]})
+    
+   }
+   console.log('at SendChar searching= ',searching);
    props.filters.PropChar(obj)
  }
+
+ 
  const SendOther=(condition,area,floor)=>{
-  console.log('at filer-navbar SendOther',condition,area,floor);
+   let auxiliryArray=[];
+   for (let i = 0; i < condition.length; i++) {
+     if(condition[i]===true)
+       auxiliryArray.push(i);
+   }
+   setSearching({...searching,PropertyCondtion:auxiliryArray,SmBegin:area.from,SmEnd:area.until,FloorBegin:floor.from,FloorEnd:floor.until})
+    console.log('at filer-navbar SendOther',condition,area,floor);
+    console.log('searching',searching);
     setIsOpenOthers(!isOpenOthers)
     props.filters.others(condition,area,floor)
  }
- const SaveSearching=()=>{
 
+
+ const SaveSearching=async()=>{
+  let currentSearching; 
+  let status;
+  console.log('save =',save);
+  if(save)
+  {
+    try {
+      console.log('at save Searching ' ,searching);
+     currentSearching= await dispatch(AddSearchingProperty(searching))
+     setCurrentSearchingId(currentSearching.payload.id)
+      
+     console.log('currentSearching=',currentSearching);
+     console.log('currentSearchingId=',currentSearchingId);
+       setIsSaveSearching(true);
+       setTimeout(() => {
+         setIsSaveSearching(false)
+       }, 5000);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  else{
+   
+      console.log(currentSearchingId);
+    status= await dispatch(DeleteSearchingProperty(currentSearchingId))
+    status=status.payload;
+    console.log('status=',status);
+    if(status==200)
+    {
+      setIsDeleteSearching(true)
+      setTimeout(() => {
+        setIsDeleteSearching(false)
+      }, 5000);
+   
+    }
+      
+   
+  }
+   setSave(!save) 
  }
   return (
 
@@ -341,8 +414,8 @@ export default function SearchAppBar(props)
        
         </Stack>   
        </AppBar>
-      
-
+      {isDeleteSearching&&<p className='saveSearching'>חיפוש זה נמחק אולי כבר מצאתם דירה?</p>}
+      { isSaveSearching&&<div className='saveSearching'> נשמר בהצלחה! מעכשיו אתם הראשונים לדעת</div>}
       {isOpenPrice&&props.filters.close? (<div  className='price'><PriceFilter  element={SendPrice}/></div>):(null)}
       {isOpenRoom&&props.filters.close?( <div className='room'><RoomFilter element={SendRoom}/></div>):(null)}
       {isOpenPropType&&props.filters.close?(<div className='type'><PropTypeFilter  element={SendFilterType}/></div>):(null)}

@@ -15,8 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-// import { GoogleLogin } from '@react-oauth/google';
-// import { useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
+ import { useGoogleLogin } from '@react-oauth/google';
 import { grey } from '@mui/material/colors';
 
 function Copyright(props) {  
@@ -100,8 +100,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {/* sign in with google  */}
-          {/* <GoogleLogin 
+          <GoogleLogin 
               onSuccess={credentialResponse => {
                 console.log(credentialResponse);
               }}
@@ -109,7 +108,7 @@ export default function SignIn() {
                 console.log('Login Failed');
               }}
               useOneTap      
-            /> */}
+            />
             <p style={{color:'#14C17B'}}>or</p>
           <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
             

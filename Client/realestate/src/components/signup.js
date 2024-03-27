@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as Yup from 'yup';
-import { useFormik } from 'formik';
+import {useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { AddUser, GetAllUser } from '../redux/userSlice';
@@ -46,7 +46,7 @@ export default function SignUp(props) {
            const stausUser=useSelector(state=>state.users.status)
             console.log('all exist user',exsitUsers);
            const [isSend,SetisSend]=useState(false);
-    
+           
           const dispatch=useDispatch();
           const handleSubmit = (event) => {
           event.preventDefault();
@@ -59,26 +59,26 @@ export default function SignUp(props) {
                   Email: data.get('email'),
                   Password: data.get('password')
             }) 
-
+             
             if(!(IsExistUser(data.get('password'),data.get('email'))) )
             {
+             
                SetisSend(true)
-               this.props.CloseLogIn(true)
-                // onDataTransfer
-              //  onDataChange()
             }
              console.log(u);  
-              
+            props.closeLogForm(false)
+
+           };     
                 
-          
+        
              
             
            
-          }; 
+         
                
       const IsExistUser =(up,em)=>{
-      const p=  exsitUsers.find(item=>item.password==up);
-      const e=  exsitUsers.find(item=>item.email==em);
+      const p=  exsitUsers.find(item=>item.password===up);
+      const e=  exsitUsers.find(item=>item.email===em);
       console.log('in IsExistUser function',p,e);
         if(p!==undefined||e!==undefined)
         {
@@ -138,7 +138,8 @@ export default function SignUp(props) {
   
     email: Yup.string()
       .email('Invalid email format')
-      .required('Email is required'),
+      .required('Email is required')
+      .matches(/^[a-zA-Z0-9].*@.*gmail\.com+$/,'Invalid email format'),
   
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
@@ -245,6 +246,7 @@ export default function SignUp(props) {
               Sign Up
             </Button>):(  
               <Button 
+      
               type="submit"
               fullWidth
               variant="contained"

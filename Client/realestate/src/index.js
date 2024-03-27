@@ -30,13 +30,13 @@ root.render(
   <React.StrictMode>
     <ThemeProvider  theme={thempoption}>
     
-     {/* <GoogleOAuthProvider clientId='596356809269-4a6k21g0rb48qqmm47n77lt1ksh1iusg.apps.googleusercontent.com'> */}
+      <GoogleOAuthProvider clientId='596356809269-4a6k21g0rb48qqmm47n77lt1ksh1iusg.apps.googleusercontent.com'> 
         <Provider store={store}>
           <BrowserRouter>
              <App />
          </BrowserRouter>
         </Provider>
-      {/* </GoogleOAuthProvider> */}
+       </GoogleOAuthProvider>
        
        </ThemeProvider>
   

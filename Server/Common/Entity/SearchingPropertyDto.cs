@@ -14,7 +14,7 @@ namespace Common.Entity
         public int? Id { get; set; }
         public int UserId { get; set; }
         public virtual UserDto? User { get; set; }
-        public PropertyStaus PropertyStatus { get; set; }
+        public PropertyStaus? PropertyStatus { get; set; }
 
 
 
@@ -31,7 +31,7 @@ namespace Common.Entity
         public bool PorchGarden { get; set; }
         //
 
-        public PropertyStaus Status { get; set; }
+        public PropertyStaus? Status { get; set; }
         public string Address { get; set; }
         public double Xcordinate { get; set; }
         public double Ycordinate { get; set; }

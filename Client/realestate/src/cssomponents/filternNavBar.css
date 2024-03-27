@@ -56,3 +56,16 @@
     border-radius:1.5%;
     overflow-y: auto;
 }
+.saveSearching{
+     position: absolute;
+     left: 44vh;
+     top: 20vh;
+     z-index: 1;
+     width:30vh;
+     height: 3vh;
+     color: black;
+     /* border: 2px solid #14C17B; */
+     background-color:#14C17B ;
+     opacity: 50%;
+     text-align: center;
+}

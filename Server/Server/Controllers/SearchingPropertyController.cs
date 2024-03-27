@@ -32,7 +32,7 @@ namespace Server.Controllers
 
         // POST api/<SearchingPropertyController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromForm] SearchingPropertyDto value)
+        public async Task<ActionResult> Post([FromBody] SearchingPropertyDto value)
         {
 
             return Ok(await service.AddAsync(value));

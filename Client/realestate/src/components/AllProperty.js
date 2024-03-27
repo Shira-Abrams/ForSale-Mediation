@@ -26,8 +26,10 @@ const AllProperty = () => {
   
   const [closeFilters, setCloseFilters] = useState(true)
   const [isDispatch, setIsDispatch] = useState()
-  const properties = useSelector(state => state.properties.property)
-  let [tempProperties, setTempProperties] = useState(properties);
+
+ const properties = useSelector(state => state.properties.property)
+ // let tempProperties=useSelector(state => state.properties.property)
+  const [tempProperties, setTempProperties] = useState(properties);
   const status = useSelector(state => state.properties.status)
   const dispatch = useDispatch()
  
@@ -134,47 +136,50 @@ const AllProperty = () => {
     'close': closeFilters,
     'ChangeClose': (flag) => { setCloseFilters({ flag }) }
   }
+ 
+  const calldispatch=async()=>{
 
-  useEffect(
+    console.log('at calldispatch');
+    dispatch(GetAllProperty())
+    setTempProperties(properties)
+    console.log('tempProperties  =',tempProperties);
+    console.log('properties  =',properties);
+
+  }
+   
+  useEffect (
     () => {
       console.log('all property dispatch dispatch');
-      dispatch(GetAllProperty())
+     console.log('use efect tempProperties',tempProperties);
+      calldispatch()
+
       if(statuss==='for-sale')
-     setTempProperties(tempProperties.filter(x=>x.propertyStatus===0))
+      setTempProperties(tempProperties.filter(x=>x.propertyStatus===0))
      if(statuss==='for-rent')
-    setTempProperties(tempProperties.filter(x=>x.propertyStatus===1))
+      setTempProperties(tempProperties.filter(x=>x.propertyStatus===1))
      console.log(statuss);
     console.log(properties);
-       }, []) 
+       },[]) 
       
-      
-    
- 
-
   return (
-
     <>
        <SearchAppBar  filters={Filtersfunction} ></SearchAppBar>
        {statuss==='for-sale'&&( <Typography textAlign="right"  variant="h5" sx={{marginRight:'1vh'}}>  דירות למכירה בכל הארץ </Typography>)}
 
        {statuss==='for-rent'&&( <Typography textAlign="right"  variant="h5" sx={{marginRight:'1vh'}}>  דירות להשכרה בכל הארץ </Typography>)}
         
-
-
-      {tempProperties.length != 0 ? (<div className="PropertyWarp" style={{direction:'rtl'}} onClick={() => { setCloseFilters(false) }}> {tempProperties.map((item, index) => {
+      {tempProperties.length!=0?(<div className="PropertyWarp" style={{direction:'rtl'}} onClick={() => { setCloseFilters(false) }}> {tempProperties.map((item, index) => {
         console.log(item);
+        console.log(tempProperties);
         dispatch(setProperty(item))
-
         return (
           <div key={item.index} className="Property">
               <MultiActionAreaCard element={item} />
           </div>)
         })}</div>) : 
-        (<div className="no-found">אין נכס מתאים נסה לנקות מסננים</div>)}
+        ( 
+        <div className="no-found">אין נכס מתאים נסה לנקות מסננים</div>)}
     </> )     
-        
-     
-      
- 
+   
 }
 export default AllProperty

@@ -1,14 +1,10 @@
 .login{
-    overflow: auto;
-    position: fixed;
     z-index: 1;
     background-color:LightGray;
     width: 33vw;
     height: 47vw;
     left: 34%;
     top: 2vw;
-    display: flex;
-    justify-content: center;
     background-color:lightgray;
     border: 2px solid#14C17B ;
     border-radius: 0;
@@ -17,14 +13,17 @@
 }
 .b{
     width: 34.5vh;
-    position: fixed;
-    bottom: 0;
-    background-color: #14C17B;
+    text-align:center;
+    font-size: large;
+    height: 5vh;
+    /* position: fixed; */
+    /* margin-top: 0;
+    padding: 0;
+    top:0; */
 }
 .button{
-    position: fixed;
-    top: 2.19vw;
-    right: 33.13vw;
     
+   position: absolute;
+   top: 0;
     
 }
