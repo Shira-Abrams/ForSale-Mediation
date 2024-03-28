@@ -17,6 +17,7 @@ import Divider from '@mui/material/Divider';
 import UploadPropType from './uploadPropType'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import UploadOtherChar from './UploadOtherChar';
+import UploadImage from './uploadImage';
 const options = [
   'רחובות ',
   'ירוחם',
@@ -144,7 +145,7 @@ const stage3=<div>
 const stage5=<div></div>
 const stage6=<div></div>
 const stage7=<div></div>
-const AllStage=[stage1,stage2,stage3,<UploadPropType></UploadPropType>,<UploadOtherChar></UploadOtherChar>,stage6,stage7]
+const AllStage=[stage1,stage2,stage3,<UploadPropType></UploadPropType>,<UploadOtherChar></UploadOtherChar>,<UploadImage/>,stage7]
 
   return (
     <div style={{display:'flex',justifyContent:'center',marginTop:'10vh'}}>
