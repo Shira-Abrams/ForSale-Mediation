@@ -12,6 +12,7 @@ import MultiActionAreaCard from './components/singleProperty';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { GetAllProperty } from "./redux/PropertySlice";
+import { AploadProperty } from './components/aploadProperty';
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -33,6 +34,7 @@ function App() {
          <Route path='allProperty/:status' element={<AllProperty/>}></Route>
          <Route path='home' element={<Home/>}> </Route>
          <Route path='singleProperty' element={<MultiActionAreaCard/>}></Route>
+         <Route path='aploudProperty' element={<AploadProperty></AploadProperty>}></Route>
         </Routes>
        </>
        

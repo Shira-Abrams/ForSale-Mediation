@@ -9,26 +9,32 @@ const RoomFilter=(props)=>{
   const SendNumRoom=()=>{
      props.element(numRoom);
   }
+
+  const cleanChose={
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  }
 return(<>
 
-    <h1 style={{textAlign:'center',color:'black'}}>חדרים</h1>
+    <h2 style={{textAlign:'center',color:'black'}}>חדרים</h2>
     <Stack spacing={1} direction="row" sx={{justifyContent:'center',marginTop:'2vh'}}>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}  onClick={()=>{setNumRoom(6)}}>+6</Button>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}   onClick={()=>{setNumRoom(5)}}>5</Button>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}  onClick={()=>{setNumRoom(4)}}>4</Button>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}  onClick={()=>{setNumRoom(3)}}>3</Button>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}  onClick={()=>{setNumRoom(2)}}>2</Button>
-    <Button variant="outlined" size='small'  sx={{borderRadius:'100%'}}  onClick={()=>{setNumRoom(2)}}>1</Button>
+    <Button variant="outlined" size='big'  sx={{borderRadius:'50%',minWidth:0}}  onClick={()=>{setNumRoom(6)}}>+6</Button>
+    <Button variant="outlined" size='big'   sx={{borderRadius:'50%',minWidth:0}}   onClick={()=>{setNumRoom(5)}}>5</Button>
+    <Button variant="outlined" size='big'   sx={{borderRadius:'50%',minWidth:0}}  onClick={()=>{setNumRoom(4)}}>4</Button>
+    <Button variant="outlined" size='big'   sx={{borderRadius:'50%',minWidth:0}}  onClick={()=>{setNumRoom(3)}}>3</Button>
+    <Button variant="outlined" size='big'   sx={{borderRadius:'50%',minWidth:0}}  onClick={()=>{setNumRoom(2)}}>2</Button>
+    <Button variant="outlined" size='big'   sx={{borderRadius:'50%',minWidth:0}}  onClick={()=>{setNumRoom(2)}}>1</Button>
  
        
     </Stack>
    <Divider component="li"  variant="middle"/>
 
-   <Stack direction='row' spacing={35}>
+   <div direction='row' style={{...cleanChose}}>
    <Button variant="text" sx={{width:'15vh'}}>נקה הכל</Button>
    <Button variant="text"   sx={{width:'15vh'}} onClick={SendNumRoom}>בחר</Button>
    
-   </Stack> 
+   </div> 
 
  </>)
  

@@ -321,7 +321,7 @@ const OtherFilters=(props)=>{
            <h3 style={{color:'black',textAlign:'right',marginRight:'1vh'}}> שטח במ"ר</h3>
  <Stack direction='row' sx={{justifyContent:'center',margin:'3vh',}}>
 
- <TextField
+     <TextField
         id="filled-select-currency-native"
         onClick={handleClick2}
         value={selectedOption2 ? selectedOption2.label : 'הכל'}

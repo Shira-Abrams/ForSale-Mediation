@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Reposetory.Entity
 {       
    
-     public enum PropertyTypes { דירה,ביתפרטי,דירתגן,קוטג,דומשפחתי , דופלקס,מגרש,פנטהאוז , דירתגג, מיניפנטאוהז}
+     public enum PropertyTypes { דירה,ביתפרטי,דירתגן,קוטג,דומשפחתי , פנאהוז,דירתגג,שטחחקלאי , דופלקס, מגרש,בינין}
      public enum EntrcyDate {מידי,עתידי,גמיש}
      public enum PropertyStaus { sale,rent}
      public enum Furniture { none,hulf,full}

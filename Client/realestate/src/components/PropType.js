@@ -50,12 +50,12 @@ const PropTypeFilter=(props)=>{
       <FormControlLabel control={<Checkbox />} label="בינין"  sx={{color:'black'}} onClick={()=>ChangeArrayType(10)}/>
     </FormGroup>
    
-          <Divider component="li"  variant="middle"/>
+    <Divider component="li"  variant="middle"/>
 
-           <Stack direction='row' spacing={10}>
-           <Button variant="text" sx={{width:'15vh'}}>נקה הכל</Button>
-           <Button variant="text"   sx={{width:'15vh'}} onClick={SendType}>בחר</Button>
-           </Stack>  
+     <Stack direction='row' spacing={10}>
+     <Button variant="text" sx={{width:'15vh'}}>נקה הכל</Button>
+     <Button variant="text"   sx={{width:'15vh'}} onClick={SendType}>בחר</Button>
+     </Stack>  
        
        
     </>

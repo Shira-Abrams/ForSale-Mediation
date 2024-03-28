@@ -59,7 +59,7 @@ export default function SignUp(props) {
                   Email: data.get('email'),
                   Password: data.get('password')
             }) 
-             
+            localStorage.setItem('currentUser',u)
             if(!(IsExistUser(data.get('password'),data.get('email'))) )
             {
              

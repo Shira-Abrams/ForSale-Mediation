@@ -13,3 +13,11 @@
     text-decoration: none;
     color:#14C17B;
 }
+.uploudbutton{
+    width:'20vh';
+    font-size:'1.5vh' ;
+    padding: '4vh';
+    border-radius: '50px';
+
+    
+}

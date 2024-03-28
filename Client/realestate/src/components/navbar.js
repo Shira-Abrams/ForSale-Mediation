@@ -22,10 +22,13 @@ import Stack from '@mui/material/Stack';
 import LoginForm from './login';
 import { useNavigate ,useParams} from 'react-router-dom';
 import zIndex from '@mui/material/styles/zIndex';
+import AddIcon from '@mui/icons-material/Add';
+import Badge from '@mui/material/Badge';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { AploadProperty } from './aploadProperty';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -76,6 +79,10 @@ function NavigateHome()
   //  const T= ()=>setcloseBybutton(true)
   //  T()
  }
+
+ const uploudAnuonce=()=>{
+        navigate('/aploudProperty')
+ }
   return (
     <AppBar position="static"  sx={{backgroundColor:'white'}}>
       <Container maxWidth="xl">
@@ -90,8 +97,8 @@ function NavigateHome()
           color="inherit"
         >
           <MenuIcon />
-        </IconButton>
-        
+         </IconButton>
+         
         {/* open menue navbar  */}
         <Menu
           id="menu-appbar"
@@ -118,16 +125,18 @@ function NavigateHome()
           ))}
         </Menu>
       </Box>
-        <Box sx={{ flexGrow: 0 }}>
+       <Stack spacing={2 } direction='row'>
+
+       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu}  sx={{ p: 0}}>
             <Avatar alt="shira abrams" src='fdfdf' />
-          </IconButton>
+        </IconButton>
         </Tooltip>
         <div style={{zIndex:1}}>{isVisible?(<LoginForm  CloseLogIn={SetIsCloseLogIn}></LoginForm> ):('')}</div>
       
       
-       
+         
        
         {/* profile meue */}
         <Menu
@@ -153,10 +162,27 @@ function NavigateHome()
           ))}
         </Menu>
        </Box> 
-              
-       <Box sx={{ flexGrow:1, display: { xs: 'none', md: 'flex' },paddingLeft:110 }}>
+       <Stack direction='row'>
+
+       <p style={{width:'12vh',fontSize:'1.7vh',textAlign:'center',paddingLeft:'1vh'}}>מודעות שמורות</p>
+       <Badge color="primary" badgeContent={1}  sx={{marginRight:'1vh'}}>
+        <FavoriteBorderIcon sx={{color:'black'}}/>
+      </Badge>
+       </Stack>
+       
+     
+       
+       <Button variant="outlined" endIcon={<AddIcon />} className='uploudbutton' sx={{width:'20vh',fontSize:'1.5vh'}} onClick={uploudAnuonce}>
+              העלאת מודעה
+       </Button>     
            
-         <div style={{Margin:5,display:'flex',flexDirection:'row',color:'white'}}> 
+
+
+       </Stack>
+       
+       <Box sx={{ flexGrow:1, display: { xs: 'none', md: 'flex' },direction:'rtl'}}>
+           
+         <div style={{Margin:5,display:'flex',flexDirection:'row',color:'white',direction:'ltr'}}> 
           <Stack direction="row" spacing={3}>
            <Link  className="link">מידע על כתובות</Link> 
            <Link  className="link">מדלן מסחרי</Link>   
