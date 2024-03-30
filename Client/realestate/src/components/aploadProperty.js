@@ -50,7 +50,7 @@ const options = [
 
 export const AploadProperty=()=> {
     const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(1);
   const [leavingvariant,setLeavingvariant]=useState('contained')
   const [comertialVariant,setComertialVariant]=useState('outlined')
   const [currentStage,setCurrentStage]=useState(0);
@@ -148,9 +148,9 @@ const stage7=<div></div>
 const AllStage=[stage1,stage2,stage3,<UploadPropType></UploadPropType>,<UploadOtherChar></UploadOtherChar>,<UploadImage/>,stage7]
 
   return (
-    <div style={{display:'flex',justifyContent:'center',marginTop:'10vh'}}>
+    <div style={{display:'flex',justifyContent:'center',marginTop:'10vh',flexDirection:'column'}}>
      <div style={{width:'60%'}} >
-    <Typography textAlign="right" sx={{color:'black'}}>  העלאת דירה . שלב{activeStep+1} מתוך 8</Typography>
+    <Typography textAlign="right" sx={{color:'black'}}>  העלאת דירה . שלב{activeStep} מתוך 8</Typography>
     <MobileStepper
       variant="progress"
       steps={9}
@@ -158,11 +158,14 @@ const AllStage=[stage1,stage2,stage3,<UploadPropType></UploadPropType>,<UploadOt
       activeStep={activeStep}
       sx={{width:'100%',justifyContent:'right'}}
      />
-     <div style={{height:'100%',width:'100%'}}> {AllStage[activeStep]}</div>
+     <div style={{height:'100%',maxWidth:'100%'}}> {AllStage[activeStep+1]}</div>
+     
     
-  
-      <div style={{display:'flex',flexDirection:'row',paddingBottom:'0px',justifyContent:'space-between',position:'static'}}>
-      <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+    </div>
+
+      
+    <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',position:'sticky',bottom:0,height:'15vh',boxShadow:'0px 4px 6px rgba(0, 0, 0, 0.1)'}}>
+      <Button size="small" onClick={handleBack} disabled={activeStep === 1}>
           {theme.direction === 'rtl' ? (
             <KeyboardArrowRight />
           ) : (
@@ -180,7 +183,7 @@ const AllStage=[stage1,stage2,stage3,<UploadPropType></UploadPropType>,<UploadOt
           )}
         </Button>
       </div>
-     </div>
+     
     </div>
   
 
