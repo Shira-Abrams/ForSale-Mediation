@@ -52,7 +52,7 @@ const AllProperty = () => {
   }
   const FilterByRoom = (e) => {
     if (e < 6) {
-      setTempProperties(tempProperties.filter(x => x.numRoom == e))
+      setTempProperties(tempProperties.filter(x => x.numRoom === e))
     }
     else {
       setTempProperties(tempProperties.filter(x => x.numRoom >= e))
@@ -88,7 +88,7 @@ const AllProperty = () => {
   const FilterByPropChar = (e) => {
    for(let i=0;i<e.length;i++)
    {  
-      if(e[i]==true&&tempProperties.length!=0){
+      if(e[i]===true&&tempProperties.length!==0){
         
         var c=propCharArray[i];
         console.log('at FilterByPropChar change :',e[i],c);

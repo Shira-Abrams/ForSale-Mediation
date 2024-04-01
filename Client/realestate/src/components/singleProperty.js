@@ -64,8 +64,8 @@ export default function ActionAreaCard(props) {
     fontSize: '3vh',
     cursor: 'pointer',
     color: 'white'
-
   }
+  
   const GoPrevious = () => {
     let temcolor=[];
     const isfirstIndex = currentIndex === 0

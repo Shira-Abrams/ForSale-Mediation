@@ -29,6 +29,27 @@ export const GetAllProperty = createAsyncThunk(
     }
 )
 
+export const AddProperty=createAsyncThunk(
+   'redux/AddProperty',
+   async(AddProperty)=>{
+       console.log('at propertySlice Add Property');
+       console.log(' the property how is added is :', AddProperty);
+       try {
+        const response=await axios.post(`${url}Property`,AddProperty)
+        console.log(response.data);
+        if(response.status===200)
+        {
+        console.log(response.status);
+         return response.data;
+        }
+       } catch (error) {
+         console.log('error accuor in add property',error.message);
+         return error.message;
+       }
+   }
+
+)
+
 
 
 
@@ -45,6 +66,10 @@ export const PropertySlice = createSlice({
         builder.addCase(GetAllProperty.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             state.property = action.payload
+        })
+        builder.addCase(AddProperty.fulfilled,(state,action)=>{
+            state.status='fulfilled';
+            state.property.push(action.payload)
         })
     }
 })

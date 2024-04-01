@@ -2,13 +2,29 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { visuallyHidden } from '@mui/utils';
 
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 export default function UploadImage() {
     const[imagesUrl,setImagesUrl]=useState([])
+    
+    localStorage.setItem('image_list',JSON.stringify(imagesUrl))
 
     const setImage=(event)=>{
+      console.log(event[0]);
         let images=event;
         //const url=[];
+        console.log(event);
         for (let i = 0; i < images.length; i++) {
             const image=images[i]
             const reader = new FileReader();
@@ -16,20 +32,20 @@ export default function UploadImage() {
             const imurl=reader.result;
             setImagesUrl(prevImage=>[...prevImage,imurl]);
                console.log(imagesUrl);   
-           // Set the image source once the file is loaded
-
-             };       
-                    
-                  
+             };   
+             localStorage.setItem('image_list',JSON.stringify(imagesUrl))
+    
+         reader.readAsDataURL(image);     
+        }                 
+           console.log(imagesUrl);         
                  
                 
            
-         reader.readAsDataURL(image);     
-        }    
+       
             
-       // Read the file as a data URL
+       
    
-       console.log(imagesUrl);
+
 
        
        
@@ -40,7 +56,18 @@ export default function UploadImage() {
     }
   return (
     <div>
-        <input type='file' onChange={(e)=>setImage(e.target.files)} accept="image/*" multiple  />
+        {/* <button  > <input type='file' onChange={(e)=>setImage(e.target.files)} accept="image/*" multiple  style={{ visibility: 'hidden'} }/>להעלאת תמונות</button> */}
+        <Button
+           component="label"
+           role={undefined}
+           variant="contained"
+           tabIndex={-1}
+           startIcon={<CloudUploadIcon />}
+           >
+             Upload file
+            <VisuallyHiddenInput type="file"  multiple  onChange={(e)=>setImage(e.target.files)}/>
+        </Button>
+       
          {/* <img src={imagesUrl}/> */}
         {/* {imagesUrl.map((item,index)=>{
             <img src={imagesUrl[index]}/>
