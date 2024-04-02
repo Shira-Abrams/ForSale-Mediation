@@ -4,8 +4,8 @@ import axios from 'axios'
 import { url } from './url'
 const initialState = {
     property: [],
-    status: 'idle'
-
+    status: 'idle',
+    currenProperty:{}
 }
 
 export const GetAllProperty = createAsyncThunk(
@@ -13,7 +13,7 @@ export const GetAllProperty = createAsyncThunk(
     async (thunkAPI) => {
         
         try {
-            debugger
+            
             const response = await axios.get(`${url}Property`)
             console.log(response.data);
             return response.data;
@@ -28,6 +28,7 @@ export const GetAllProperty = createAsyncThunk(
 
     }
 )
+
 
 export const AddProperty=createAsyncThunk(
    'redux/AddProperty',
@@ -60,7 +61,14 @@ export const PropertySlice = createSlice({
     name: 'properties',
     initialState,
     reducers: {
-
+        setCurrentProperty:(state,action)=>{
+            
+        if(Array.isArray(action.payload))
+          state.currenProperty={...state.currenProperty,FileImageList:[...action.payload]}
+        else 
+        state.currenProperty={...state.currenProperty,...action.payload}
+  
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(GetAllProperty.fulfilled, (state, action) => {
@@ -74,5 +82,5 @@ export const PropertySlice = createSlice({
     }
 })
 
-export const { } = PropertySlice.actions
+export const { setCurrentProperty} = PropertySlice.actions
 export default PropertySlice.reducer

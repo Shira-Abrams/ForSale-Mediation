@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -23,6 +23,7 @@ import { useContext } from 'react';
 import { MyContext } from './context.js';
 import { useDispatch, useSelector } from "react-redux";
 import { AddProperty } from '../redux/PropertySlice.js';
+import {setCurrentProperty} from '../redux/PropertySlice.js'
 
 const options = [
   'רחובות ',
@@ -70,38 +71,43 @@ export const AploadProperty=({children})=> {
   //let cc = useContext(MyContext);
  let charp=localStorage.getItem('charProperty');
  let convertChar=JSON.parse(charp);
-  const [property,setProperty]=useState({
-    CityId:null,
-    UserId:1,
-    PropertyStatus:null,
-    OfferingStatus:'',
-    Adress:null,
-    Sm:null,
-    Parkinglot:null,
-    Elivator:null,
-    Aircondition:null,
-    Basmsent:null,
-    SafeRoom:null,
-    DisabledAcces:null,
-    Bars:null,    
-    PorchGarden:null,
-    PropertyType:null,
-    PropertyPrice:null,
-    PropertyCondition:null,
-    PriceForSm:null,
-    Floor:null,
-    AllFloor:null,
-    NumRoom:null,
-    NumBlock:null,
-    NumEvenue:null,
-    EntrcyDate:null,
-    BuildingYear:null,
-    PropertyDesctiption:null,
-    Furniture:null,
-    IsCommercial:null,
-    FileImageList:null
-   });
- const propType=localStorage.getItem('propType')
+  const property=useSelector(state=>state.properties.currenProperty);
+    
+
+   useEffect(()=>{
+      dispatch(setCurrentProperty({
+        CityId:0,
+        UserId:1,
+        PropertyStatus:null,
+        OfferingStatus:'',
+        Adress:null,
+        Sm:null,
+        Parkinglot:null,
+        Elivator:null,
+        Aircondition:null,
+        Basmsent:null,
+        SafeRoom:null,
+        DisabledAcces:null,
+        Bars:null,    
+        PorchGarden:null,
+        PropertyType:null,
+        PropertyPrice:null,
+        PropertyCondition:null,
+        PriceForSm:null,
+        Floor:null,
+        AllFloor:null,
+        NumRoom:null,
+        NumBlock:null,
+        NumEvenue:null,
+        EntrcyDate:null,
+        BuildingYear:null,
+        PropertyDesctiption:null,
+        Furniture:null,
+        IsCommercial:null,
+        FileImageList:null
+       }))
+   },[])
+  const propType=localStorage.getItem('propType')
   const convertPropType=JSON.parse(propType)
 
   const imagesUp=localStorage.getItem('image_list')
@@ -109,7 +115,7 @@ export const AploadProperty=({children})=> {
 const Leaving=()=>{
     setLeavingvariant('contained');
     setComertialVariant('outlined');
-    setProperty({...property,IsCommercial:false})
+    dispatch(setCurrentProperty({IsCommercial:false}))
     console.log('atLeaving property is : ', property);
 
    }
@@ -117,21 +123,17 @@ const Leaving=()=>{
 const Comertial=()=>{
   setLeavingvariant('outlined');
   setComertialVariant('contained')
-  setProperty({...property,IsCommercial:true})
+  dispatch(setCurrentProperty({IsCommercial:true}))
   console.log('atLeaving property is : ', property);
 
  }
  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setCurrentStage((prevActiveStep) => prevActiveStep + 1)
-    if(activeStep===4)
-        SaveType(convertPropType)
-    if(activeStep===5)
-    SavePropChar();
-     if(activeStep===6)
-     SaveImage()
+  setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  setCurrentStage((prevActiveStep) => prevActiveStep + 1)
     if(activeStep===7)
     SendAllProperty()
+
+   
   };
 
   const handleBack = () => {
@@ -142,73 +144,40 @@ const Comertial=()=>{
   const SetSale=()=>{
     setSaleVariant('contained');
     setRentVariant('outlined');
-    setProperty({...property,PropertyStatus:0})
+   // setProperty({...property,PropertyStatus:0})
+    dispatch(setCurrentProperty({PropertyStatus:0}))
     console.log('at SetSale the property is :', property);
 
   }
   const SetRent=()=>{
     setSaleVariant('outlined');
     setRentVariant('contained');
-    setProperty({...property,PropertyStatus:1})
+    //setProperty({...property,PropertyStatus:1})
+    dispatch(setCurrentProperty({PropertyStatus:1}))
+
     console.log('at SetRent the property is :', property);
 
 
   }
  const SetCity =(event)=>{
      let cityIndex=options.findIndex(x=>x===event)
-    setProperty({...property,CityId:options[cityIndex]})
+   // setProperty({...property,CityId:options[cityIndex]})
  } 
  const SetAdres =(event)=>{
   const regex =/^\d+$/;
    if(!regex.test(event.target.value))
-    setProperty({...property,Adress:event.target.value})
+    //setProperty({...property,Adress:event.target.value})
+    dispatch(setCurrentProperty({Adress:event.target.value}))
+
     console.log('at SetAdres  the property is :' ,property);
   // else
   // setProperty({...property,Adress:''})
 
  }
- const SaveType=(obj)=>{
-     setProperty({...property,
-      PropertyPrice:obj.PropertyPrice,
-      EntrcyDate:obj.EntrcyDate,
-      AllFloor:obj.AllFloor,
-      Floor:obj.Floor,
-      NumRoom:obj.NumRoom,
-      Sm:obj.Sm,
-      PropertyType:obj.PropertyType,
-      PriceForSm:obj.PriceForSm
-     }) 
-     console.log('obj =',obj);
-  console.log('at save type  hte property now is : ', property);
-}
+ 
 
-const SavePropChar=()=>{
-  console.log('  at SavePropChar charProperty= ',convertChar); 
-  
-  setProperty({
-   ...property,
-    Parkinglot:convertChar.Parkinglot,
-    Elivator:convertChar.Elivator,
-    Aircondition:convertChar.Aircondition,
-    Basmsent:convertChar.Basmsent,
-    SafeRoom:convertChar.SafeRoom,
-    DisabledAcces:convertChar.DisabledAcces,
-    Bars:convertChar.Bars,    
-    PorchGarden:convertChar.PorchGarden,
-    PropertyCondition:convertChar.PropertyCondition,
-    BuildingYear:convertChar.BuildingYear,
-    Furniture:convertChar.Furniture,
-    PropertyDesctiption:convertChar.PropertyDesctiption
-  
-   })
-  console.log('at SavePropChar  property = ',property);
-}
-const SaveImage=()=>{
-    console.log('imagesUp=',imagesUp);
-    setProperty({...property,FileImageList:imagesUp})
-    console.log('at SaveImage property is =',property);
 
-}
+
 
 
 const SendAllProperty=()=>{
@@ -225,7 +194,7 @@ const SendAllProperty=()=>{
   formData.append('DisabledAcces',property.DisabledAcces)
   formData.append('Elivator',property.Elivator)
   formData.append('EntrcyDate',property.EntrcyDate)
-  formData.append('FileImageList',property.FileImageList)
+ // formData.append('FileImageList',property.FileImageList)
   formData.append('Floor',property.Floor)
   formData.append('Furniture',property.Furniture)
   formData.append('IsCommercial',property.IsCommercial)
@@ -243,6 +212,14 @@ const SendAllProperty=()=>{
  formData.append('PropertyType',property.PropertyType)
  formData.append('SafeRoom',property.SafeRoom)
  formData.append('Sm',property.Sm)
+//  property.FileImageList.forEach((image,index )=> {
+//     formData.append(`FileImageList[${index}]`,image)
+//  });
+
+ for (const image of property.FileImageList) {
+  
+       formData.append(`FileImageList`,image)
+ }
   dispatch(AddProperty(formData))
 }
 
@@ -275,11 +252,12 @@ const stage3=<div>
 
   <Toolbar sx={{marginRight:0,direction:'rtl'}}>
      <Autocomplete
-       value={options[property.CityId]}
+       value={options[property.CityId||0]}
        onChange={(event, newValue) => {
          setValue(newValue);
          let cityIndex=options.findIndex(x=>x===newValue)
-         setProperty({...property,CityId:cityIndex})
+         //setProperty({...property,CityId:cityIndex})
+        dispatch(setCurrentProperty({CityId:cityIndex}))
          console.log('at city autocomplete',property);
        }}
        inputValue={inputValue}
@@ -322,7 +300,8 @@ const stage3=<div>
           id="outlined-required"
           onChange={(event)=>{
             if(event.target.value>0)
-             setProperty({...property,NumBlock:event.target.value})
+            // setProperty({...property,NumBlock:event.target.value})
+             dispatch(setCurrentProperty({NumBlock:event.target.value}))
              console.log('at change NumBlock the value is ',event.target.value);
              console.log('at change NumBlock the property is ',property);
 
@@ -341,7 +320,8 @@ const stage3=<div>
           type='number'
           onChange={(event)=>{
              if(event.target.value>0)
-             setProperty({...property,NumEvenue:event.target.value})
+             //setProperty({...property,NumEvenue:event.target.value})
+            dispatch(setCurrentProperty({NumEvenue:event.target.value}))
 
           }}
           id="outlined-required"
@@ -390,7 +370,7 @@ const stage8=<div>
 
 
 </div>
-const AllStage=[stage1,stage2,stage3,<UploadPropType isSave={isSaveType} savSend={SaveType}></UploadPropType>,<UploadOtherChar></UploadOtherChar>,<UploadImage/>,stage7,stage8]
+const AllStage=[stage1,stage2,stage3,<UploadPropType ></UploadPropType>,<UploadOtherChar></UploadOtherChar>,<UploadImage/>,stage7,stage8]
 
   return (
     <>
@@ -420,7 +400,6 @@ const AllStage=[stage1,stage2,stage3,<UploadPropType isSave={isSaveType} savSend
    </div>
 
  </div>
-    {/* footer */}
 
   
    

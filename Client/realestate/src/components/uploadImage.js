@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { visuallyHidden } from '@mui/utils';
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentProperty } from '../redux/PropertySlice';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -16,44 +18,67 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 export default function UploadImage() {
-    const[imagesUrl,setImagesUrl]=useState([])
+    const[imagesUrls,setImagesUrls]=useState([])
+    const [imageSend,setImageSend]=useState([])
     
-    localStorage.setItem('image_list',JSON.stringify(imagesUrl))
-
-    const setImage=(event)=>{
-      console.log(event[0]);
-        let images=event;
-        //const url=[];
-        console.log(event);
-        for (let i = 0; i < images.length; i++) {
-            const image=images[i]
-            const reader = new FileReader();
-            reader.onload = () => {
-            const imurl=reader.result;
-            setImagesUrl(prevImage=>[...prevImage,imurl]);
-               console.log(imagesUrl);   
-             };   
-             localStorage.setItem('image_list',JSON.stringify(imagesUrl))
+    const property=useSelector(state=>state.properties.currenProperty);
+    const dispatch=useDispatch();
+    const ImageTosent=(imagefile)=>{
+      setImageSend([...imageSend,...imagefile])
+      console.log(imageSend,imagefile);
+    }  
     
-         reader.readAsDataURL(image);     
-        }                 
-           console.log(imagesUrl);         
+    // const setImage=(event)=>{
+    // //  console.log(event[0]);
+    //     let images=event;
+    //     ImageTosent(event)
+    //     dispatch(setCurrentProperty({FileImageList:JSON.stringify(imageSend)}))
+    //     console.log('imageSend=',imageSend);
+    //     console.log(property);
+    //     //const url=[];
+    //     console.log(event);
+    //     for (let i = 0; i < event.length; i++) {
+    //         const image=event[i]
+    //         const reader = new FileReader();
+    //         reader.onload = () => {
+    //         const imurl=reader.result;
+    //         setImagesUrl(prevImage=>[...prevImage,imurl]);
+    //            console.log(imagesUrl);   
+    //          };   
+             
+    
+    //      reader.readAsDataURL(image);     
+    //     }                 
+    //        console.log(imagesUrl);         
                  
-                
+    // }            
            
-       
-            
-       
+   const HandleSingleImageChange=(event)=>{
+    const image = event.target.files[0];
+    console.log(event.target.files);
+    console.log(event.target.files[0]);
+    setImageSend([...imageSend,event.target.files[0]])
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result;
+        setImagesUrls( [...imagesUrls, imageUrl]);
+      };
+      reader.readAsDataURL(image);
+    }   
+    console.log('list image',imagesUrls);
+    console.log('image send',imageSend);
+    dispatch(setCurrentProperty([...imageSend,event.target.files[0]]))
+     console.log(property);
+   }   
    
-
-
        
        
 
 
         
        
-    }
+    
   return (
     <div>
         {/* <button  > <input type='file' onChange={(e)=>setImage(e.target.files)} accept="image/*" multiple  style={{ visibility: 'hidden'} }/>להעלאת תמונות</button> */}
@@ -65,7 +90,7 @@ export default function UploadImage() {
            startIcon={<CloudUploadIcon />}
            >
              Upload file
-            <VisuallyHiddenInput type="file"  multiple  onChange={(e)=>setImage(e.target.files)}/>
+            <VisuallyHiddenInput type="file"    onChange={HandleSingleImageChange}/>
         </Button>
        
          {/* <img src={imagesUrl}/> */}
@@ -73,7 +98,7 @@ export default function UploadImage() {
             <img src={imagesUrl[index]}/>
         })} */}
     <div style={{display:'flex',flexDirection:'column',flexWrap:'wrap'}}></div>
-        {imagesUrl.map((url,index)=>(
+        {imagesUrls.map((url,index)=>(
             <div key={index}>
                  <img src={url} style={{width:'30vh'}} alt={`Uploaded ${index}`} />
             </div>

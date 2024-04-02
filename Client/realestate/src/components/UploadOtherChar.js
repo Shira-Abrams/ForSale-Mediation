@@ -12,221 +12,215 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Provider } from 'react';
 import { MyContext } from './context';
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentProperty } from '../redux/PropertySlice';
+import e from 'cors';
 
 export default function UploadOtherChar() {
-
+  const property=useSelector(state=>state.properties.currenProperty);
+   const dispatch=useDispatch();
    const [charVariant,setCharVariant]=useState(['outlined','outlined','outlined','outlined','outlined','outlined','outlined','outlined','outlined','outlined'])
-   const[charProperty,setCharProperty]=useState({
-    Parkinglot:false,
-    Elivator:false,
-    Aircondition:false,
-    Basmsent:false,
-    SafeRoom:false,
-    DisabledAcces:false,
-    Bars:false,    
-    PorchGarden:false,
-    PropertyCondition:null,
-    BuildingYear:null,
-    Furniture:null,
-    PropertyDesctiption:null
-   })
-    let jsonChar=JSON.stringify(charProperty)
-   localStorage.setItem('charProperty',jsonChar)
-   
-   const [by,setBy]=useState();
-   useEffect(()=>{
+  //  const[charProperty,setCharProperty]=useState({
+  //   Parkinglot:false,
+  //   Elivator:false,
+  //   Aircondition:false,
+  //   Basmsent:false,
+  //   SafeRoom:false,
+  //   DisabledAcces:false,
+  //   Bars:false,    
+  //   PorchGarden:false,
+  //   PropertyCondition:null,
+  //   BuildingYear:null,
+  //   Furniture:null,
+  //   PropertyDesctiption:null
+  //  })
+    useEffect(()=>{
+      dispatch(setCurrentProperty({Parkinglot:false,Elivator:false,
+         Aircondition:false,
+          Basmsent:false,
+          SafeRoom:false,
+          DisabledAcces:false,
+          Bars:false,    
+          PorchGarden:false,}))
+    },[])
   
-      // jsonChar=JSON.stringify(charProperty)
-      // localStorage.setItem('charProperty',jsonChar)
-    
-   },[])
-    
+   
    const SetChar=(index)=>{
     const tempVariat=[...charVariant]
       switch (index) {
          case 0:
-           if(charProperty.Parkinglot)
+           if(property.Parkinglot)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({Parkinglot:false}))
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({Parkinglot:true}))
 
            }
-           setCharProperty({...charProperty,Parkinglot:!charProperty.Parkinglot})
-           jsonChar=JSON.stringify(charProperty)
-           localStorage.setItem('charProperty',jsonChar)
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
-
           break;
 
+
+          
+
           case 1:
-            if(charProperty.Elivator)
+            if(property.Elivator)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({Elivator:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({Elivator:true}))
 
            }
-           setCharProperty({...charProperty,Elivator:!charProperty.Elivator})
-           jsonChar=JSON.stringify(charProperty)
-           localStorage.setItem('charProperty',jsonChar)
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
 
           break;
 
           case 2:
-            if(charProperty.Basmsent)
+            if(property.Basmsent)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({Basmsent:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({Basmsent:true}))
 
            }
-           setCharProperty({...charProperty,Basmsent:!charProperty.Basmsent})
-           
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
 
           break;
 
           case 3:
-            if(charProperty.SafeRoom)
+            if(property.SafeRoom)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({SafeRoom:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({SafeRoom:true}))
 
            }
-           setCharProperty({...charProperty,SafeRoom:!charProperty.SafeRoom})
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
-
           break;
 
           case 4:
-            if(charProperty.Aircondition)
+            if(property.Aircondition)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({Aircondition:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({Aircondition:true}))
 
            }
-           setCharProperty({...charProperty,Aircondition:!charProperty.Aircondition})
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
-
           break;
+ 
+          
 
           case 5:
-            if(charProperty.DisabledAcces)
+            if(property.DisabledAcces)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({DisabledAcces:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({DisabledAcces:true}))
 
            }
-           setCharProperty({...charProperty,DisabledAcces:!charProperty.DisabledAcces})
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
-
+    
           break;
 
           case 6:
                   
-          if(charProperty.Bars)
+          if(property.Bars)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({Bars:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({Bars:true}))
+
 
            }
-           setCharProperty({...charProperty,Bars:!charProperty.Bars})
-            setCharVariant(tempVariat) 
-            console.log(charProperty);
+          
          break;
 
           case 7:
           
-          if(charProperty.PorchGarden)
+          if(property.PorchGarden)
            {
             tempVariat[index]='outlined'
+            dispatch(setCurrentProperty({PorchGarden:false}))
+
            }
            else{
             tempVariat[index]='contained'
+            dispatch(setCurrentProperty({PorchGarden:true}))
+
 
            }
-           setCharProperty({...charProperty,PorchGarden:!charProperty.PorchGarden})
-            setCharVariant(tempVariat)            
-             console.log(charProperty);
+           
 
           break;
           default:
           break;
         } 
-          
+        setCharVariant(tempVariat) 
         
         
-        jsonChar=JSON.stringify(charProperty)
-           localStorage.setItem('charProperty',jsonChar)
+           
        }
     
     const SetBuildingYear=(event)=>{
        
         const by=event.target.value;
-        let prevValue;
         let nby;
         const regex =/^\d+$/;
         if(regex.test(by))
         {
           nby=Number(by); 
-          prevValue=nby;
-          setCharProperty({...charProperty,BuildingYear:nby})
-          jsonChar=JSON.stringify(charProperty)
-           localStorage.setItem('charProperty',jsonChar)
+          dispatch(setCurrentProperty({BuildingYear:nby}))
           console.log('nby=',nby);
-          console.log(' at SetBuildingYear  charProperty=',charProperty);
+          console.log(' at SetBuildingYear  property=',property);
           console.log('at if set by correct value ');
           
         
 
         }
         else{
-        
-          console.log('at else set by',charProperty.BuildingYear);
-          setCharProperty({...charProperty,BuildingYear:charProperty.BuildingYear||''})
+           dispatch(setCurrentProperty({BuildingYear:property.BuildingYear||''}))
+          console.log('at else set by',property);
           
         }
 
     }
          
-     const SetCondition=(e)=>{jsonChar=JSON.stringify(charProperty)
-     
-      setCharProperty({...charProperty,PropertyCondition:e.target.value})
-      jsonChar=JSON.stringify(charProperty)
-      localStorage.setItem('charProperty',jsonChar)
-
+     const SetCondition=(e)=>{     
+          dispatch(setCurrentProperty({PropertyCondition:e.target.value}))
+          console.log('at SetCondition the property is= ',property);
      }   
      
 
      const setFurniture=(e)=>{
-      setCharProperty({...charProperty,Furniture:e.target.value})
-      jsonChar=JSON.stringify(charProperty)
-      localStorage.setItem('charProperty',jsonChar)
-     
+      
+      dispatch(setCurrentProperty({Furniture:e}))
+      console.log('at setFurniture the property is= ',property);
 
-
+    
      }
   return (
-    <MyContext.Provider value={charProperty}>
+    
          
          <div style={{direction:'rtl'}}>
      <Stack spacing={'1vh'} sx={{margin:'2vh'}}>
@@ -268,7 +262,7 @@ export default function UploadOtherChar() {
     <div style={{direction:'rtl',margin:'3vh'}}>
     <Typography textAlign="right" sx={{color:'black',marginBottom:'2vh'}}>שנת בניה</Typography>
       <TextField
-          value={charProperty.BuildingYear}
+          value={property.BuildingYear}
           onChange={SetBuildingYear}
           id="outlined-required"
           inputProps={{style:{
@@ -290,19 +284,18 @@ export default function UploadOtherChar() {
       name="radio-buttons-group"
     >
 
-      <FormControlLabel value={2} control={<Radio />} label="מלא"  onClick={setFurniture}/>
-      <FormControlLabel value={1} control={<Radio />} label="חלקי" onClick={setFurniture}/>
-      <FormControlLabel value={0} control={<Radio />} label="ללא"  onClick={setFurniture}/>
+      <FormControlLabel value={2} control={<Radio />} checked={property.Furniture===2} label="מלא"  onClick={(e)=>setFurniture(2)}/>
+      <FormControlLabel value={1} control={<Radio />} checked={property.Furniture===1} label="חלקי" onClick={(e)=>setFurniture(1)}/>
+      <FormControlLabel value={0} control={<Radio />} checked={property.Furniture===0} label="ללא"  onClick={(e)=>setFurniture(0)}/>
     </RadioGroup>
     </FormControl>   
 
     <Typography textAlign="right" sx={{color:'black',marginBottom:'2vh'}}>? מה עוד כדאי לדעת </Typography>
     <TextField
-           alue={charProperty.PropertyDesctiption}
+           alue={property.PropertyDesctiption}
            onChange={(e)=>{
-            setCharProperty({...charProperty,PropertyDesctiption:e.target.value})
-            jsonChar=JSON.stringify(charProperty)
-            localStorage.setItem('charProperty',jsonChar)
+           
+           dispatch(setCurrentProperty({PropertyDesctiption:e.target.value}))
             
           }}
           id="outlined-multiline-static"
@@ -318,7 +311,6 @@ export default function UploadOtherChar() {
 
 
     </div>
- </MyContext.Provider >
 
    
    

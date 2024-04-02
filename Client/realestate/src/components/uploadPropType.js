@@ -14,8 +14,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-import { json } from 'react-router-dom';
-
+//import { json } from 'react-router-dom';
+import {setCurrentProperty} from '../redux/PropertySlice.js'
+import { useDispatch, useSelector } from "react-redux";
 
 const options = [
     'רחובות ',
@@ -110,18 +111,20 @@ export default function UploadPropType({savSend,isSave}) {
     const [anchorElf2, setAnchorElf2] = React.useState(null);
     const [selectedOptionf2, setSelectedOptionf2] = React.useState(null);
     const[floor,setFloor]=React.useState({from:0,until:0})
-     const [propertyType,setPropertyType]=useState({
-      PropertyType:null,
-      Sm:null,
-      NumRoom:null,
-      Floor:null,
-      AllFloor:null,
-      EntrcyDate:null,
-      PropertyPrice:null,
-      PriceForSm:null
-     }); 
-     const jsonObject=JSON.stringify(propertyType)
-     localStorage.setItem('propType',jsonObject)
+    //  const [propertyType,setPropertyType]=useState({
+    //   PropertyType:null,
+    //   Sm:null,
+    //   NumRoom:null,
+    //   Floor:null,
+    //   AllFloor:null,
+    //   EntrcyDate:null,
+    //   PropertyPrice:null,
+    //   PriceForSm:null
+    //  }); 
+   // const[ jsonType,setJsonType]=useState(JSON.stringify(propertyType))
+    const dispatch=useDispatch(); 
+    const property=useSelector(state=>state.properties.currenProperty);
+
     const[roomVariant,setRoomVariant]=useState(['outlined','outlined','outlined','outlined','outlined','outlined']);
     const [price,setPrice]=useState('');
     const [sms,setSms]=useState('')
@@ -133,11 +136,11 @@ export default function UploadPropType({savSend,isSave}) {
        if(option)
        {
         setSelectedOption(option)
-        setPropertyType({...propertyType,PropertyType:option.value})
-        const jsonObject=JSON.stringify(propertyType)
-        localStorage.setItem('propType',jsonObject)
+       // setPropertyType({...propertyType,PropertyType:option.value})
+       dispatch(setCurrentProperty({PropertyType:option.value}))
+        
         console.log(' at handleClose tha value is :',option.value)
-        console.log(' at handleClose tha PropertyType  is :',propertyType)
+        console.log(' at handleClose tha property  is :',property)
 
        }
         
@@ -161,20 +164,20 @@ export default function UploadPropType({savSend,isSave}) {
               setSelectedOptionf1(option);
               setSelectedOptionf2(option);
               setFloor({from:option.value,until:option.value})
-              setPropertyType({...propertyType,Floor:option.value,AllFloor:option.value})
-              const jsonObject=JSON.stringify(propertyType)
-              localStorage.setItem('propType',jsonObject)
-               console.log('at change all floor the property type is :' ,propertyType);
+             // setPropertyType({...propertyType,Floor:option.value,AllFloor:option.value})
+             dispatch(setCurrentProperty({Floor:option.value,AllFloor:option.value}))
+             // localStorage.setItem('propType',JSON.stringify(propertyType))
+               console.log('at change all floor the property type is :' ,property);
               console.log(floor);
             }
             else{
               console.log('at handleClosef2 else');
               setSelectedOptionf2(option);
               setFloor({...floor,until:option.value})
-              setPropertyType({...propertyType,AllFloor:option.value})
-              const jsonObject=JSON.stringify(propertyType)
-              localStorage.setItem('propType',jsonObject)
-              console.log('else1 change all floor the property type is :' ,propertyType);
+             // setPropertyType({...propertyType,AllFloor:option.value})
+             dispatch(setCurrentProperty({AllFloor:option.value}))
+
+              console.log('else1 change all floor the property type is :' ,property);
               console.log(floor);
             }
             
@@ -182,10 +185,11 @@ export default function UploadPropType({savSend,isSave}) {
           else{
             setSelectedOptionf2(option);
             setFloor({...floor,until:option.value})
-            setPropertyType({...propertyType,AllFloor:option.value})
-            const jsonObject=JSON.stringify(propertyType)
-            localStorage.setItem('propType',jsonObject)
-              console.log('else2 change all floor the property type is :' ,propertyType);
+            //setPropertyType({...propertyType,AllFloor:option.value})
+            dispatch(setCurrentProperty({AllFloor:option.value}))
+
+             //localStorage.setItem('propType',JSON.stringify(propertyType))
+              console.log('else2 change all floor the property type is :' ,property);
             console.log(floor);
           }
         }
@@ -209,34 +213,31 @@ export default function UploadPropType({savSend,isSave}) {
               console.log('at handleClosef1 if');
                setSelectedOptionf1(option);
                setSelectedOptionf2(option);
-               setPropertyType({...propertyType,Floor:option.value,AllFloor:option.value})
-               const jsonObject=JSON.stringify(propertyType)
-               localStorage.setItem('propType',jsonObject)
+              // setPropertyType({...propertyType,Floor:option.value,AllFloor:option.value})
+              dispatch(setCurrentProperty({Floor:option.value,AllFloor:option.value}))
                setFloor({from:option.value,until:option.value})
                console.log(floor);
-               console.log(' if at change floor  propertytype:',propertyType);
+               console.log(' if at change floor  property:',property);
 
             }
             else{
               console.log('at handleClosef1 else');
               setSelectedOptionf1(option);
-              setPropertyType({...propertyType,Floor:option})
-              const jsonObject=JSON.stringify(propertyType)
-              localStorage.setItem('propType',jsonObject)
+              //setPropertyType({...propertyType,Floor:option})
+              dispatch(setCurrentProperty({Floor:option.value}))
               setFloor({...floor,from:option.value})
               console.log(floor);
-              console.log(' else1 at change floor  propertytype:',propertyType);
+              console.log(' else1 at change floor  property:',property);
 
              }  
          }
           else{
           setSelectedOptionf1(option);
           setFloor({...floor,from:option.value})
-          setPropertyType({...propertyType,Floor:option.value})
-          const jsonObject=JSON.stringify(propertyType)
-          localStorage.setItem('propType',jsonObject)
+         // setPropertyType({...propertyType,Floor:option.value})
+         dispatch(setCurrentProperty({Floor:option.value}))
           console.log(floor);
-          console.log(' else2 at change floor  propertytype:',propertyType);
+          console.log(' else2 at change floor  property:',property);
 
           
           }
@@ -248,25 +249,23 @@ export default function UploadPropType({savSend,isSave}) {
          const regex =/^\d+$/;
          if(regex.test(s))
          {
-             setSms(s)
              ns=Number(s)
-             setPropertyType({...propertyType,Sm:ns})
-             const jsonObject=JSON.stringify(propertyType)
-             localStorage.setItem('propType',jsonObject)
+            // setPropertyType({...propertyType,Sm:ns})
+             dispatch(setCurrentProperty({Sm:ns}))
              console.log('at SaveSm the sm is' ,s);
-             console.log('at SaveSm the property is',propertyType);
+             console.log('at SaveSm the property is',property);
          }
          else{
-          setSms(sms)
+          dispatch(setCurrentProperty({Sm:property.Sm||''}))
          }
        
        }
        const SetRoom=(index)=>{
-        setPropertyType({...propertyType,NumRoom:index}) 
-        const jsonObject=JSON.stringify(propertyType)
-        localStorage.setItem('propType',jsonObject)
+       // setPropertyType({...propertyType,NumRoom:index}) 
+       dispatch(setCurrentProperty({NumRoom:index}))
+        
         console.log('the vlue is :', index);
-        console.log('at SetRoom the property is settin now is ' ,propertyType); 
+        console.log('at SetRoom the property is settin now is ' ,property); 
         let tempRoom=[...roomVariant]
             for (let i = 0; i < tempRoom.length; i++) {
                  tempRoom[i]='outlined'
@@ -279,12 +278,12 @@ export default function UploadPropType({savSend,isSave}) {
 
      const SetEntraceDate=(event)=>{
       console.log('SetEntraceDate ',event.target.value);
-        setPropertyType({...propertyType,EntrcyDate:event.target.value})
-        const jsonObject=JSON.stringify(propertyType)
-        localStorage.setItem('propType',jsonObject)
-
-        console.log('at SetEntraceDate the property type is :',propertyType );
-    }
+       // setPropertyType({...propertyType,EntrcyDate:event.target.value})
+       dispatch(setCurrentProperty({EntrcyDate:event.target.value}))
+        console.log('at SetEntraceDate the property type is :',property );
+      }
+        
+   
 
     const SavePrice=(event)=>{
       let p=event.target.value
@@ -292,23 +291,25 @@ export default function UploadPropType({savSend,isSave}) {
       const regex =/^\d+$/;
       if(regex.test(p))
       {
-        setPrice(p)
         np=Number(p)
-        setPropertyType({...propertyType,PropertyPrice:np,PriceForSm:np/propertyType.Sm})
-        const jsonObject=JSON.stringify(propertyType)
-        localStorage.setItem('propType',jsonObject)
-        console.log('at SavePrice the property type is :',propertyType);
+        let smprice=Number(np/property.Sm)
+        console.log(smprice);
+        // setPropertyType({...propertyType,PropertyPrice:np})
+        // setPropertyType({...propertyType,PriceForSm:smprice})
+      dispatch(setCurrentProperty({PropertyPrice:np,PriceForSm:smprice}))
+      console.log('at SavePrice the property type is :',property);
+        
+      
       }
       else{
-         setPrice(price)
+        dispatch(setCurrentProperty({PropertyPrice:property.PropertyPrice||''}))
+    }
       }
         
        
-        console.log('at SetPrice the value is :', price);
-        setPropertyType({...propertyType,PropertyPrice:price})
-        const jsonObject=JSON.stringify(propertyType)
-        localStorage.setItem('propType',jsonObject)
-    }
+        
+       // setPropertyType({...propertyType,PropertyPrice:price})
+        
      
   return (
 <div style={{direction:'rtl'}}>
@@ -353,7 +354,7 @@ export default function UploadPropType({savSend,isSave}) {
       <div style={{margin:'3vh'}}>
       <Typography textAlign="right" sx={{color:'black'}}>שטח במ"ר</Typography>
       <TextField
-        value={sms}
+        value={property.Sm}
           id="outlined-required"
           placeholder='סה"כ שטח'
           // sx={{width:'20vh'}}
@@ -479,7 +480,7 @@ export default function UploadPropType({savSend,isSave}) {
 
       <FormControl  sx={{ m: 1 ,marginTop:'2vh'}}>
           <OutlinedInput
-            value={price}
+            value={property.PropertyPrice}
             id="outlined-adornment-amount"
             onChange={SavePrice}
             startAdornment={<InputAdornment position="start">₪</InputAdornment>}
