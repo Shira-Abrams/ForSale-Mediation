@@ -140,7 +140,7 @@ const AllProperty = () => {
   const calldispatch=async()=>{
 
     console.log('at calldispatch');
-   // dispatch(GetAllProperty())
+   //dispatch(GetAllProperty())
     setTempProperties(properties)
     console.log('tempProperties  =',tempProperties);
     console.log('properties  =',properties);

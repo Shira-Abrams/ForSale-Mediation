@@ -17,7 +17,8 @@ import PropertyDetails from './components/PropertyDetails';
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
-    dispatch(GetAllProperty())
+    
+   dispatch(GetAllProperty())
 
   },[])
 
