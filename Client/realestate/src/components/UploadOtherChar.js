@@ -207,14 +207,14 @@ export default function UploadOtherChar() {
     }
          
      const SetCondition=(e)=>{     
-          dispatch(setCurrentProperty({PropertyCondition:e.target.value}))
+          dispatch(setCurrentProperty({PropertyCondition:Number(e.target.value)}))
           console.log('at SetCondition the property is= ',property);
      }   
      
 
      const setFurniture=(e)=>{
       
-      dispatch(setCurrentProperty({Furniture:e}))
+      dispatch(setCurrentProperty({Furniture:Number(e)}))
       console.log('at setFurniture the property is= ',property);
 
     

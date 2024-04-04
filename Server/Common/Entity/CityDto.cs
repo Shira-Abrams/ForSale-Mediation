@@ -10,7 +10,7 @@ namespace Common.Entity
     public class CityDto
     {
         public int? Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int? NumOfSailingProperty { get; set; }
         public double? SumPriceForSaling { get; set; }
         public double?   SumPriceForRenting { get; set; }     
