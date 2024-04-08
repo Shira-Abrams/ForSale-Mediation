@@ -37,6 +37,7 @@ function ResponsiveAppBar() {
   const for_rent='for-rent';
   let currentUser=  localStorage.getItem('currentUser')
    currentUser=JSON.parse(currentUser)
+   let converUser=currentUser||{Name:'',Id:0}
    React.useEffect(()=>{
        console.log(currentUser);
    },[])
@@ -91,6 +92,7 @@ function NavigateHome()
  }
 
  const logout=()=>{
+  localStorage.setItem('currentUser',null)
   setAnchorElUser(null);
 
  }
@@ -163,7 +165,7 @@ function NavigateHome()
        <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu}  sx={{ p: 0}}>
-            <Avatar alt={currentUser.Name} src={currentUser.Name} />
+            <Avatar alt={converUser.Name} src={converUser.Name} />
         </IconButton>
         </Tooltip>
         <div style={{zIndex:1}}>{isVisible?(<LoginForm  CloseLogIn={SetIsCloseLogIn}></LoginForm> ):('')}</div>

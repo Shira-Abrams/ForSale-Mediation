@@ -16,11 +16,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { GoogleLogin } from '@react-oauth/google';
- import { useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { grey } from '@mui/material/colors';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 function Copyright(props) {  
-  
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -38,14 +40,44 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const exsitUsers=useSelector(state=>state.users.users)
+   const [isExist,setIsExist]=useState(true)
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log({ email: data.get('email'),      password: data.get('password'), }); 
+    let esu= IsExistUser(data.get('password'),data.get('email'))
+    console.log('esu==',esu);
+    if(esu===undefined)
+      setIsExist(false)
+    else{
+      console.log('signin seu=',esu);
+      localStorage.setItem('currentUser',JSON.stringify(esu))   
+     }
+
+      
+
   };   
+  const IsExistUser=(up,em)=>{
+    console.log(up,em);
+    console.log(exsitUsers);
+    const p= exsitUsers.find(item=>item.password===up);
+    const e= exsitUsers.find(item=>item.email===em);
+    console.log('e p',e,p);
+    if(p!==undefined&&e!==undefined)
+    {
+      console.log(p,e);
+       console.log('at IsExistUser exsist User');
+      return p;
+    }
+   
+    else
+    {
+      console.log(p||e);
+     return p||e
+    }
+  }
  //check integrity schema 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -110,7 +142,7 @@ export default function SignIn() {
               useOneTap      
             />
             <p style={{color:'#14C17B'}}>or</p>
-          <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             
            {formik.errors.email?( <TextField
               margin="normal"
@@ -170,6 +202,8 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+                          {!isExist&& <p style={{color:'red',textAlign:'center'}}> אינך רשום במערכת נכסה להרשם   </p>}
+
             {formik.errors.password ||formik.errors.email?(<Button  
               disabled
               type="submit"

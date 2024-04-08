@@ -155,7 +155,7 @@ export default function SearchAppBar(props)
 { 
 
   let currentUser=  localStorage.getItem('currentUser')
-  currentUser=JSON.parse(currentUser)
+  currentUser=JSON.parse(currentUser)||{Id:0,Name:''}
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
  const[isOpenPrice,setIsOpenPrice]=React.useState(false);
@@ -169,7 +169,7 @@ export default function SearchAppBar(props)
  const[currentSearchingId,setCurrentSearchingId]=React.useState(undefined);
 
  const [searching,setSearching]=React.useState({
-   UserId:currentUser.Id,
+   UserId:currentUser.Id||0,
    Parkinglot:false,
    Elivator:false,
    Aircondition:false, 

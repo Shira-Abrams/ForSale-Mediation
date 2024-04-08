@@ -169,7 +169,7 @@ export default function ActionAreaCard(props) {
            {props.element.numRoom} חד'.קומה{props.element.floor} .{props.element.sm}מ"ר
           </Typography>
             <Typography variant="body2" color="text.secondary">
-            {propType[props.element.propertyType]},{props.element.adress} ,{props.element.city.name}
+            {propType[props.element.propertyType]},{props.element.adress} ,{props.element.city?.name}
             </Typography>
             
           </Stack>

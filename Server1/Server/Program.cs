@@ -18,8 +18,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddServiceExtensions();
 
-builder.Services.AddSingleton<Icontext, Db>();
-//builder.Services.AddDbContext<Icontext, Db>();
+//builder.Services.AddSingleton<Icontext, Db>();
+builder.Services.AddDbContext<Icontext, Db>();
 
 builder.Services.AddCors(options =>
 {

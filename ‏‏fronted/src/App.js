@@ -16,14 +16,13 @@ import { AploadProperty } from './components/aploadProperty';
 import PropertyDetails from './components/PropertyDetails';
 import AdProp from './components/AdProp';
 import SavedSearch from './components/SavedSearch';
-
+import {GetAllUser} from "./redux/userSlice"
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(GetAllSearchingProperty())
-
+    dispatch(GetAllUser())
  //dispatch(GetAllProperty())
-
   },[])
 
 
