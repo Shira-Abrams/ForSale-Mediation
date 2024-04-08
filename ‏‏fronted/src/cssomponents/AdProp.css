@@ -1,0 +1,14 @@
+.PropertyWarp{
+    display:  flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     direction: rtl;
+}
+.Property{
+    
+    margin: 2%;
+}
+.no-found{
+    text-align: center;
+    font-size: large;
+}

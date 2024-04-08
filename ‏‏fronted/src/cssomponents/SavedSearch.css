@@ -1,0 +1,23 @@
+.singleSearch{
+    border-radius: 4px;
+    width: 56vh;
+    height: 27vh;
+    border: 1px solid lightgray;
+    margin: 2vh;
+    direction: rtl;
+}
+.warSaerch{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.types{
+    background-color: lightgray;
+    border-radius: 4px;
+    margin: 1vh;
+}
+.delete{
+    position: relative;
+    top:0.1vh;
+    left:0.1vh;
+}
