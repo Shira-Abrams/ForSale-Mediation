@@ -1,0 +1,8 @@
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.csproj.AssemblyReference.cache
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.AssemblyInfoInputs.cache
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.AssemblyInfo.cs
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.csproj.CoreCompileInputs.cache
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.MvcApplicationPartsAssemblyInfo.cache
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.RazorAssemblyInfo.cache
+D:\תכנות שנה ב\ForSale-Mediation\Server\Server\obj\Debug\net6.0\Server.RazorAssemblyInfo.cs
